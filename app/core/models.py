@@ -9,6 +9,12 @@ from django.contrib.auth.models import (
 )
 
 
+def user_image_file_path(instance, filename):
+    ext = os.path.splitext(filename)[1]
+    filename = f'{uuid.uuid4()}{ext}'
+    return os.path.join('uploads', 'user', filename)
+
+
 def recipe_image_file_path(instance, filename):
     ext = os.path.splitext(filename)[1]
     filename = f'{uuid.uuid4()}{ext}'
@@ -41,7 +47,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-
+    image = models.ImageField(null=True, upload_to=recipe_image_file_path)
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
