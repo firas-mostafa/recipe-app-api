@@ -133,6 +133,7 @@ class PrivateUserApiTests(TestCase):
         self.assertEqual(res.data, {
             'name': self.user.name,
             'email': self.user.email,
+            'image': self.user.image,
         })
 
     def test_post_me_not_allowed(self):

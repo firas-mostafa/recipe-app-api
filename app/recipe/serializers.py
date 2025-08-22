@@ -38,7 +38,8 @@ class RecipeSerializer(serializers.ModelSerializer):
             'price',
             'link',
             'tags',
-            'ingredients']
+            'ingredients',
+            'image']
         read_only_fields = ['id']
 
     def _get_or_create_tags(self, tags, recipe):
